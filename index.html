@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple QR Code Generator</title>
+    <title>QR Code Generator with Error Correction</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,8 +28,15 @@
 <body>
 
 <div class="container">
-    <h1>QR Code Generator (Custom Library)</h1>
+    <h1>QR Code Generator with Error Correction</h1>
     <input type="text" id="text-input" placeholder="Enter text or URL" />
+    <label for="error-level">Error Correction Level:</label>
+    <select id="error-level">
+        <option value="L">L (7%)</option>
+        <option value="M">M (15%)</option>
+        <option value="Q">Q (25%)</option>
+        <option value="H">H (30%)</option>
+    </select>
     <button onclick="generateQRCode()">Generate QR Code</button>
     <div id="qr-code"></div>
 </div>
@@ -38,21 +45,29 @@
 <script>
     function generateQRCode() {
         var qrText = document.getElementById("text-input").value;
+        var errorLevel = document.getElementById("error-level").value;
+
         if (qrText === "") {
             alert("Please enter text or a URL!");
             return;
         }
 
-        // Initialize the custom QR code generator
-        const qr = new SimpleQRCode("qr-code", { size: 200, colorDark: "#000000", colorLight: "#ffffff" });
+        // Initialize the custom QR code generator with error correction
+        const qr = new SimpleQRCode("qr-code", { 
+            size: 200, 
+            colorDark: "#000000", 
+            colorLight: "#ffffff", 
+            errorCorrectionLevel: errorLevel 
+        });
 
         // Clear existing QR code
         qr.clear();
 
-        // Generate a new QR code
+        // Generate a new QR code with the specified error correction level
         qr.generate(qrText);
     }
 </script>
 
 </body>
 </html>
+
