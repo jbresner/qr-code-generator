@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="qr-wrap">
+    <p class="qr-label">Tool</p>
+    <h1 class="qr-title">QR generator</h1>
+
+    <div class="input-row">
+      <input class="url-input" id="urlInput" type="url" placeholder="https://example.com" />
+      <button class="gen-btn" id="genBtn">Generate</button>
+    </div>
+
+    <div class="options-row">
+      <label class="toggle-label">
+        <input type="checkbox" id="transparentToggle" />
+        Transparent background
+      </label>
+      <label class="color-label">
+        Module color
+        <input type="color" id="colorPicker" value="#000000" />
+      </label>
+    </div>
+
+    <div class="error-msg" id="errMsg"></div>
+
+    <div class="qr-panel" id="qrPanel">
+      <div class="qr-placeholder" id="placeholder">
+        <svg class="qr-placeholder-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="4" y="4" width="24" height="24" rx="2" stroke="currentColor" stroke-width="3"/>
+          <rect x="11" y="11" width="10" height="10" fill="currentColor"/>
+          <rect x="36" y="4" width="24" height="24" rx="2" stroke="currentColor" stroke-width="3"/>
+          <rect x="43" y="11" width="10" height="10" fill="currentColor"/>
+          <rect x="4" y="36" width="24" height="24" rx="2" stroke="currentColor" stroke-width="3"/>
+          <rect x="11" y="43" width="10" height="10" fill="currentColor"/>
+          <rect x="36" y="36" width="6" height="6" fill="currentColor"/>
+          <rect x="46" y="36" width="6" height="6" fill="currentColor"/>
+          <rect x="56" y="36" width="4" height="6" fill="currentColor"/>
+          <rect x="36" y="46" width="6" height="6" fill="currentColor"/>
+          <rect x="46" y="46" width="14" height="4" fill="currentColor"/>
+          <rect x="36" y="56" width="24" height="4" fill="currentColor"/>
+        </svg>
+        <p class="qr-placeholder-text">Your QR code will appear here</p>
+      </div>
+
+      <div class="qr-preview-wrap" id="previewWrap" style="display:none;">
+        <div class="checker-bg" id="checkerBg"></div>
+        <div id="qrSvgWrap"></div>
+      </div>
+
+      <button class="dl-btn" id="dlBtn" style="display:none;">Download SVG</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
